@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package forbesdata;
+
+service Forbes {
+    rpc GetBillionaires (GetBillionairesRequest) returns (GetBillionairesResponse) {}
+    rpc GetBillionaireBioByName (GetBillionaireBioByNameRequest) returns (GetBillionaireBioByNameResponse) {}
+}
+
+message Billionaire{
+    string name = 1;
+    int64 age = 2;
+    string country = 3;
+    string organization = 4;
+}
+
+message GetBillionairesRequest{
+}
+message GetBillionairesResponse{
+    repeated Billionaire billionaires = 1;
+}
+
+message GetBillionaireBioByNameRequest{
+    string name = 1;
+}
+message GetBillionaireBioByNameResponse{
+    repeated Billionaire billionaire = 1;
+}

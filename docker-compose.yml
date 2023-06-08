@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  server:
+    build: ./server
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+  client:
+    build: ./client
+    # command: sh -c "sleep 10s"
+    ports:
+      - "8081:8080"
+    depends_on:
+      - server
+      - database
+  database:
+    build: ./database
+    environment:
+      - MYSQL_DATABASE=forbes
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306:3306"
